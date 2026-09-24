@@ -277,10 +277,10 @@
                             <i class="fa-solid fa-pen mr-1"></i> 編集
                         </div>
                     </div>
-                    <div class="p-1.5 text-left bg-white flex-1 flex flex-col justify-center">
-                        <div class="font-extrabold text-[11px] text-gray-800 leading-tight truncate">${slot.name || '名前未設定'}</div>
-                        <div class="text-[9px] text-gray-500 mt-0.5 leading-tight truncate">${slot.group || ''}</div>
-                    </div>
+<div class="p-2 text-center bg-white flex-shrink-0">
+    <div class="font-bold text-xs text-gray-800 leading-normal truncate">${slot.name || '名前未設定'}</div>
+    <div class="text-[10px] text-gray-500 leading-normal truncate">${slot.group || ''}</div>
+</div>
                 `;
 
                 container.appendChild(card);
