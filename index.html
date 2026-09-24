@@ -326,11 +326,11 @@
             saveBtn.disabled = true;
 
             try {
-                // 1200 x 1620 px に拡大（切れ防止）
+                // 1200 x 1720 px にさらにゆとりを持たせて拡張（被り・切れ完全防止）
                 const canvas = document.createElement('canvas');
                 const ctx = canvas.getContext('2d');
                 const canvasWidth = 1200;
-                const canvasHeight = 1620;
+                const canvasHeight = 1720;
                 canvas.width = canvasWidth;
                 canvas.height = canvasHeight;
 
@@ -348,23 +348,23 @@
                 ctx.fillStyle = '#1f2937';
                 ctx.font = 'bold 52px "M PLUS Rounded 1c", sans-serif';
                 ctx.textAlign = 'center';
-                ctx.fillText(mainTitleText, canvasWidth / 2, 100);
+                ctx.fillText(mainTitleText, canvasWidth / 2, 105);
 
                 if (subTitleText) {
                     ctx.fillStyle = '#f472b6';
                     ctx.font = '500 28px "M PLUS Rounded 1c", sans-serif';
-                    ctx.fillText(subTitleText, canvasWidth / 2, 148);
+                    ctx.fillText(subTitleText, canvasWidth / 2, 155);
                 }
 
                 // グリッド配置計算 (3x3)
                 const startX = 60;
-                const startY = 195;
+                const startY = 205;
                 const gridWidth = canvasWidth - (startX * 2); // 1080px
                 const gap = 24;
                 const cardWidth = (gridWidth - (gap * 2)) / 3; // 344px
                 const imgHeight = cardWidth; // 正方形
-                const textAreaHeight = 110; // 文字エリアにゆとりを持たせる
-                const cardHeight = imgHeight + textAreaHeight; // 454px
+                const textAreaHeight = 100; // テキストエリア
+                const cardHeight = imgHeight + textAreaHeight; // 444px
 
                 // 画像ロード用のヘルパー関数
                 const loadImage = (src) => new Promise((resolve) => {
@@ -434,31 +434,31 @@
                     // テキスト（名前・グループ）描画
                     ctx.textAlign = 'center';
                     ctx.fillStyle = '#1f2937';
-                    ctx.font = 'bold 25px "M PLUS Rounded 1c", sans-serif';
-                    ctx.fillText(slot.name || '名前未設定', x + cardWidth / 2, y + imgHeight + 45, cardWidth - 20);
+                    ctx.font = 'bold 24px "M PLUS Rounded 1c", sans-serif';
+                    ctx.fillText(slot.name || '名前未設定', x + cardWidth / 2, y + imgHeight + 42, cardWidth - 20);
 
                     ctx.fillStyle = '#6b7280';
                     ctx.font = '20px "M PLUS Rounded 1c", sans-serif';
-                    ctx.fillText(slot.group || '', x + cardWidth / 2, y + imgHeight + 80, cardWidth - 20);
+                    ctx.fillText(slot.group || '', x + cardWidth / 2, y + imgHeight + 74, cardWidth - 20);
                 }
 
-                // フッター部分
-                const footerY = canvasHeight - 45;
+                // フッター部分（十分な間隔を取って配置）
+                const footerY = canvasHeight - 65;
                 ctx.strokeStyle = 'rgba(252, 231, 243, 0.8)';
                 ctx.lineWidth = 2;
                 ctx.beginPath();
-                ctx.moveTo(startX, footerY - 25);
-                ctx.lineTo(canvasWidth - startX, footerY - 25);
+                ctx.moveTo(startX, footerY - 30);
+                ctx.lineTo(canvasWidth - startX, footerY - 30);
                 ctx.stroke();
 
                 ctx.fillStyle = '#f472b6';
                 ctx.font = 'bold 22px "M PLUS Rounded 1c", sans-serif';
                 ctx.textAlign = 'left';
-                ctx.fillText('#好き顔9選', startX, footerY + 5);
+                ctx.fillText('#好き顔9選', startX, footerY + 10);
 
                 ctx.fillStyle = '#d1d5db';
                 ctx.textAlign = 'right';
-                ctx.fillText('推し活トリセツ', canvasWidth - startX, footerY + 5);
+                ctx.fillText('推し活トリセツ', canvasWidth - startX, footerY + 10);
 
                 // 生成完了処理
                 const dataUrl = canvas.toDataURL('image/png');
